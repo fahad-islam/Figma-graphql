@@ -1,30 +1,25 @@
-<p align="center">
-  <a href="http://figma-graphql.party">
-    <img width="150" src="./assets/logo.svg" />
-  </a>
-</p>
+---
+name: Home
+route: /
+---
 
-<h1 align="center">
-figma-graphql
-</h1>
+# ![figma-graphql logo][logo]
 
-<div align="center">
+# figma-graphql
 
 The reimagined [Figma API](https://www.figma.com/developers) (super)powered by GraphQL
 
-[![Build Status][build-badge]][travis] [![Greenkeeper badge][greenkeeper-badge]][greenkeeper] [![Code Coverage][coverage-badge]][coverage] [![Known Vulnerabilities][snyk-badge]][snyk] [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors) [![PRs Welcome][prs-badge]][prs] <br/> ![Prettier format][prettier-badge] [![Commitizen friendly][commitizen-badge]][commitizen] [![semantic-release][semantic-badge]][semantic] [![MIT License][license-badge]][license]
-
-</div>
+[![Build Status][build-badge]][travis] [![Greenkeeper badge][greenkeeper-badge]][greenkeeper] [![Code Coverage][coverage-badge]][coverage] [![Known Vulnerabilities][snyk-badge]][snyk] [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors) [![PRs Welcome][prs-badge]][prs] <br /> ![Prettier format][prettier-badge] [![Commitizen friendly][commitizen-badge]][commitizen] [![semantic-release][semantic-badge]][semantic] [![MIT License][license-badge]][license]
 
 ## Quick start
 
+### 1. Open figma-graphql [sandbox][codesandbox] and fork it
+
 [![Open figma-graphql][codesandbox-badge]][codesandbox]
 
-1. Open figma-graphql [sandbox][codesandbox] and fork it
+### 2. Add your [Figma API Token](https://www.figma.com/developers/docs#access-tokens) as `FIGMA_TOKEN` in the [codesandbox secret keys](https://codesandbox.io/docs/secrets)
 
-2. Add your [Figma API Token](https://www.figma.com/developers/docs#access-tokens) as `FIGMA_TOKEN` in the [codesandbox secret keys](https://codesandbox.io/docs/secrets)
-
-3. Try your first query!
+### 3. Try your first query!
 
 ```gql
 {
@@ -34,26 +29,29 @@ The reimagined [Figma API](https://www.figma.com/developers) (super)powered by G
 }
 ```
 
-## Documentation
+## Why use figma-graphql?
 
-Please read the [full documentation][website] for additional examples and best practices.
+It's great that Figma provides an API allowing anyone to easily get the data from their design files. But that API has two characteristics that make it quite hard for people without a good technical knowledge to access it:
 
-## Developing
+1. The file data has a rigid tree-shaped structure that forces people to know the exact structure of the design file and can easily break existing code by just making a small change in the design file (like grouping elements).
 
-1.  Clone this repo
-2.  Run `yarn install` to install all dependencies
-3.  Run `FIGMA_TOKEN={YOUR_PERSONAL_FIGMA_TOKEN} yarn run dev` or add it to an `.env` file
-4.  The Figma GraphQL playground should be available at `http://localhost:3001/`
+2. It requires multiple requests to different endpoints to get data that is related. Want to export specific frames in a file? You need to query the file data first, parse the data to get the frame ids and then make additional requests to a different endpoint to get that data.
 
-## Figma file
+This obviously makes things a lot more complex than they need to be so we use the power of GraphQL solve these issues and add a few other features.
 
-This isn't really necessary but [here's the base Figma file](https://www.figma.com/file/cLp23bR627jcuNSoBGkhL04E/Style-guide) that is being used during development.
+With figma-graphql, we focus on the person using the library, not the machines. We see this as the best way to open your design files to more people, especially to those with minimal technical backround.
 
-It should work with any file so can use your own Figma files and just replace `file(id: "cLp23bR627jcuNSoBGkhL04E")` with the id of the file you want to query.
+## Examples
 
-## Contributors
+A good way to understand the different queries that you can build is to use the "Schema" tab on the righ-hand side of the playground and go through the different properties of all the supported types, but we've also selected a few [example scenarios](/practical-examples) that can be used as a reference for common uses of the library.
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## Migrating to v2
+
+For v2 we've completely rebuilt the API in a more human-first approach which makes it incompatible with most of the v1 queries. To read more about the motivations and biggest changes please read the [Road to v2](/road-to-v2) section.
+
+---
+
+Brought to you by these awesome contributors:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -74,6 +72,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+[logo]: https://raw.githubusercontent.com/braposo/figma-graphql/master/assets/logo.svg?sanitize=true
 [license-badge]: https://img.shields.io/npm/l/figma-graphql.svg?style=flat-square
 [license]: https://github.com/braposo/figma-graphql/blob/master/LICENSE
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
@@ -93,4 +92,3 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 [semantic]: https://github.com/semantic-release/semantic-release
 [greenkeeper-badge]: https://badges.greenkeeper.io/braposo/figma-graphql.svg?style=flat-square
 [greenkeeper]: https://greenkeeper.io/
-[website]: https://figma-graphql.party

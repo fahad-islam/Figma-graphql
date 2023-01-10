@@ -1,0 +1,34 @@
+language: node_js
+cache: yarn
+node_js:
+    - 10
+
+branches:
+    only:
+        - master
+        - /^greenkeeper.*$/
+
+jobs:
+    include:
+        - stage: test
+          script:
+              - commitlint-travis
+              - yarn lint
+              - yarn test --coverage && codecov
+          skip_cleanup: true
+        - stage: release
+          deploy:
+              - provider: script
+                skip_cleanup: true
+                script: yarn semantic-release
+          if: branch = master
+        - stage: docs
+          before_deploy:
+              - yarn docs:build
+          deploy:
+              - provider: pages
+                skip_cleanup: true
+                local_dir: .docz/dist/
+                github_token: $GH_TOKEN
+                keep_history: true
+          if: branch = master
